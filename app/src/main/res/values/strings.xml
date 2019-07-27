@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Kleverness</string>
+    <string name="msj_exit_app">Presione otra vez, si desea salir</string>
+    <string name="information_profile">Información básica</string>
+    <string name="information_professions">Profesiones</string>
+    <string name="information_friends">Amigos</string>
+    <string name="text_searchable">Buscar</string>
+    <string name="info_label">Infromación</string>
+    <string name="text_info">Esta es una aplicación sin fines de lucro, creada para propósitos educacionales</string>
+    <string name="tv_text_licence">GNU General Public License v3.0</string>
+    <string name="transition_profile">transition_profile</string>
+    <string name="not_register">Sin registrar</string>
+</resources>
