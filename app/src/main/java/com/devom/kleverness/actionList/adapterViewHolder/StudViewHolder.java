@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,22 +14,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.RequestManager;
 import com.devom.kleverness.actionList.R;
 import com.devom.kleverness.actionList.model.Device;
+import com.devom.kleverness.actionList.utils.ExpandAndCollapseViewUtil;
 
 public class StudViewHolder extends RecyclerView.ViewHolder {
     private RequestManager requestManager;
     private CardView itemStud;
     public ImageView ivThumbnail, ivExpand;
     private TextView tvName;
-
+    private ViewGroup collapseLayout;
     private Drawable drawable;
+    public LinearLayout subContainerActions;
+
+    private static final int DURATION = 300;
 
     public StudViewHolder(@NonNull View itemView, RequestManager requestManager) {
         super(itemView);
         this.requestManager = requestManager;
         ivThumbnail = itemView.findViewById(R.id.iv_thumbnail);
-        itemStud = itemView.findViewById(R.id.item_citizen);
+        itemStud = itemView.findViewById(R.id.item_stub);
         tvName = itemView.findViewById(R.id.tv_name);
         ivExpand = itemView.findViewById(R.id.iv_expand);
+        collapseLayout = itemView.findViewById(R.id.collapse_layout);
+        subContainerActions = itemView.findViewById(R.id.sub_container_actions);
     }
 
     public void bind(final Device device, int side) {
@@ -40,11 +47,6 @@ public class StudViewHolder extends RecyclerView.ViewHolder {
                 .into(ivThumbnail);
 
         tvName.setText(device.getAliasDevice());
-
-        /*ivThumbnail.setOnClickListener(v -> {
-            device.setIsOn(!device.getIsOn());
-            chooseImage(device);
-        });*/
 
         ViewGroup.LayoutParams paramsItem = itemStud.getLayoutParams();
         paramsItem.height = side;
@@ -77,6 +79,14 @@ public class StudViewHolder extends RecyclerView.ViewHolder {
                 }
 
                 break;
+        }
+    }
+
+    public void expand(boolean isExpand) {
+        if (isExpand) {
+            ExpandAndCollapseViewUtil.expand(collapseLayout, DURATION);
+        } else {
+            ExpandAndCollapseViewUtil.collapse(collapseLayout, DURATION);
         }
     }
 }

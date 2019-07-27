@@ -10,4 +10,5 @@
     <string name="tv_text_licence">GNU General Public License v3.0</string>
     <string name="transition_profile">transition_profile</string>
     <string name="not_register">Sin registrar</string>
+    <string name="expand_text">¡Expandido!</string>
 </resources>

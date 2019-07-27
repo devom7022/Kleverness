@@ -35,6 +35,28 @@ public class Device {
     @Expose
     private List<Object> control = null;
 
+    /*public Device() {
+        this.expandible = false;
+    }
+*/
+    private boolean expandible;
+
+    public Boolean getOn() {
+        return isOn;
+    }
+
+    public void setOn(Boolean on) {
+        isOn = on;
+    }
+
+    public boolean isExpandible() {
+        return expandible;
+    }
+
+    public void setExpandible(boolean expandible) {
+        this.expandible = expandible;
+    }
+
     public Integer getPosition() {
         return position;
     }

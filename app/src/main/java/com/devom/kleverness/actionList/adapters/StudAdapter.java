@@ -19,7 +19,7 @@ public class StudAdapter extends RecyclerView.Adapter<StudViewHolder> {
 
     private int side;
     private RequestManager requestManager;
-    private List<Device> citizenList = new ArrayList<>();
+    private List<Device> devices = new ArrayList<>();
     private StudAdapterView view;
 
     public StudAdapter(RequestManager requestManager) {
@@ -35,7 +35,7 @@ public class StudAdapter extends RecyclerView.Adapter<StudViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull StudViewHolder holder, int pos) {
-        final Device localItem = citizenList.get(pos);
+        final Device localItem = devices.get(pos);
 
         holder.bind(localItem, getSide());
 
@@ -43,14 +43,18 @@ public class StudAdapter extends RecyclerView.Adapter<StudViewHolder> {
             localItem.setIsOn(!localItem.getIsOn());
             holder.chooseImage(localItem);
             notifyItemChanged(pos);
+        });
 
+        holder.subContainerActions.setOnClickListener(v -> {
+            localItem.setExpandible(!localItem.isExpandible());
+            holder.expand(localItem.isExpandible());
         });
 
     }
 
     @Override
     public int getItemCount() {
-        return null != citizenList ? citizenList.size() : 0;
+        return null != devices ? devices.size() : 0;
     }
 
     public void setView(StudAdapterView view, int sideX, int colums) {
@@ -63,13 +67,8 @@ public class StudAdapter extends RecyclerView.Adapter<StudViewHolder> {
     }
 
     public void setData(List<Device> citizenList) {
-        this.citizenList.clear();
-        this.citizenList.addAll(citizenList);
+        this.devices.clear();
+        this.devices.addAll(citizenList);
         notifyDataSetChanged();
     }
-
-    public void change(int pos) {
-        notifyItemChanged(pos);
-    }
-
 }
